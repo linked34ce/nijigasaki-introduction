@@ -1,8 +1,8 @@
-name: npm_ci
+name: install
 on:
   workflow_call:
 jobs:
-  build:
+  ci:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.1.1

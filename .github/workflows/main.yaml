@@ -2,28 +2,17 @@ name: main
 on:
   push:
 jobs:
-  package_install:
-    uses: ./.github/workflows/npm_ci.yaml
-  package_check:
+  install:
+    uses: ./.github/workflows/install.yaml
+  scan:
     needs:
-      - package_install
-    uses: ./.github/workflows/npm_audit.yaml
-  code_scan:
+      - install
+    uses: ./.github/workflows/scan.yaml
+  test:
     needs:
-      - package_install
-    uses: ./.github/workflows/type_check.yaml
-  unit_test:
+      - scan
+    uses: ./.github/workflows/test.yaml
+  pages:
     needs:
-      - package_check
-      - code_scan
-    uses: ./.github/workflows/unit_test.yaml
-  e2e_test:
-    needs:
-      - package_check
-      - code_scan
-    uses: ./.github/workflows/e2e_test.yaml
-  deploy_on_pages:
-    needs:
-      - unit_test
-      - e2e_test
-    uses: ./.github/workflows/deploy.yaml
+      - test
+    uses: ./.github/workflows/pages.yaml
