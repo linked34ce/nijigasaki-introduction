@@ -1,12 +1,7 @@
-name: learn-github-actions
-on: [push]
+name: run
+on: [workflow_call]
 jobs:
-  check-bats-version:
+  myjob:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "CI/CD test!"
-      - uses: actions/checkout@v4.1.1
-      - run: |
-          ls -al
-          cd .github/workflows/
-          ls -al
+      - run: echo "HELLO RUN"

@@ -1,0 +1,10 @@
+name: main
+on: [push]
+jobs:
+  myjob:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "HELLO MAIN"
+  call-workflow:
+    needs: [myjob]
+    uses: ./.github/workflows/run.yaml
