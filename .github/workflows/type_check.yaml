@@ -7,9 +7,5 @@ jobs:
     steps:
       - run: echo "TYPE CHECK STARTED"
       - uses: actions/checkout@v4.1.1
-      - run: |
-          ls -al
-          cd .github/workflows/
-          ls -al
-      - run: npm install --no-audit
+      - run: npm ci --no-audit
       - run: npm run type-check

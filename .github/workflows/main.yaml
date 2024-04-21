@@ -2,9 +2,15 @@ name: main
 on:
   push:
 jobs:
+  package_install:
+    uses: ./.github/workflows/npm_ci.yaml
   package_check:
+    needs:
+      - package_install
     uses: ./.github/workflows/npm_audit.yaml
   code_scan:
+    needs:
+      - package_install
     uses: ./.github/workflows/type_check.yaml
   unit_test:
     needs:

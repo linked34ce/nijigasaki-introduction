@@ -7,11 +7,7 @@ jobs:
     steps:
       - run: echo "E2E TEST ON PLAYWRIGHT STARTED"
       - uses: actions/checkout@v4.1.1
-      - run: |
-          ls -al
-          cd .github/workflows/
-          ls -al
-      - run: npm install --no-audit
+      - run: npm ci --no-audit
       - run: npx playwright install
       - run: npx playwright install-deps
       - run: npm run build
