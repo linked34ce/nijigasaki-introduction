@@ -4,11 +4,11 @@ jobs:
   myjob:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "UNIT TEST ON VITEST STARTED"
+      - run: echo "PACKAGE INSTALLATION STARTED"
       - uses: actions/checkout@v4.1.1
       - run: |
           ls -al
           cd .github/workflows/
           ls -al
       - run: npm install --no-audit
-      - run: npm run test:unit
+      - run: npm audit

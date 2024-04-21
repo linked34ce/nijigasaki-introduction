@@ -1,7 +1,0 @@
-name: run
-on: [workflow_call]
-jobs:
-  myjob:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "HELLO RUN"

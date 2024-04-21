@@ -1,13 +1,19 @@
 name: main
 on: [push]
 jobs:
-  myjob:
+  main:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "HELLO MAIN"
-  call_workflow:
-    needs: [myjob]
-    uses: ./.github/workflows/run.yaml
+      - run: echo "PIPELINE STARTED"
+  npm_audit:
+    needs: [main]
+    uses: ./.github/workflows/npm_audit.yaml
+  type_check:
+    needs: [npm_audit]
+    uses: ./.github/workflows/type_check.yaml
   unit_test:
-    needs: [call_workflow]
+    needs: [type_check]
     uses: ./.github/workflows/unit_test.yaml
+  e2e_test:
+    needs: [unit_test]
+    uses: ./.github/workflows/e2e_test.yaml
