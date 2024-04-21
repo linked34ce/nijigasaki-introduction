@@ -1,5 +1,6 @@
 name: unit_test
-on: workflow_call
+on:
+  workflow_call:
 jobs:
   vitest:
     runs-on: ubuntu-latest

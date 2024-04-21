@@ -1,5 +1,7 @@
 name: npm_audit
-on: workflow_call
+on:
+  workflow_call:
+  workflow_dispatch:
 jobs:
   npm_audit:
     runs-on: ubuntu-latest

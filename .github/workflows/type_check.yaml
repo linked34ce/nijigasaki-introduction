@@ -1,5 +1,6 @@
 name: type_check
-on: workflow_call
+on:
+  workflow_call:
 jobs:
   type_check:
     runs-on: ubuntu-latest

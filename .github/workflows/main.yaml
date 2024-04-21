@@ -1,5 +1,6 @@
 name: main
-on: push
+on:
+  push:
 jobs:
   package_check:
     uses: ./.github/workflows/npm_audit.yaml
@@ -15,3 +16,8 @@ jobs:
       - package_check
       - code_scan
     uses: ./.github/workflows/e2e_test.yaml
+  deploy_on_pages:
+    needs:
+      - unit_test
+      - e2e_test
+    uses: ./.github/workflows/deploy.yaml
