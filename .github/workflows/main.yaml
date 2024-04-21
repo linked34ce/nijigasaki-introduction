@@ -1,19 +1,19 @@
 name: main
-on: [push]
+on: push
 jobs:
   main:
     runs-on: ubuntu-latest
     steps:
       - run: echo "PIPELINE STARTED"
-  npm_audit:
-    needs: [main]
+  package_check:
+    needs: main
     uses: ./.github/workflows/npm_audit.yaml
-  type_check:
-    needs: [npm_audit]
+  code_scan:
+    needs: package_check
     uses: ./.github/workflows/type_check.yaml
   unit_test:
-    needs: [type_check]
+    needs: code_scan
     uses: ./.github/workflows/unit_test.yaml
   e2e_test:
-    needs: [unit_test]
+    needs: code_scan
     uses: ./.github/workflows/e2e_test.yaml

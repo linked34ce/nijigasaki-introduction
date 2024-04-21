@@ -1,7 +1,7 @@
 name: unit_test
-on: [workflow_call]
+on: workflow_call
 jobs:
-  myjob:
+  playwright:
     runs-on: ubuntu-latest
     steps:
       - run: echo "E2E TEST ON PLAYWRIGHT STARTED"

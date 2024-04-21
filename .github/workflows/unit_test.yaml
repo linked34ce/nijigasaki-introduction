@@ -1,7 +1,7 @@
 name: unit_test
-on: [workflow_call]
+on: workflow_call
 jobs:
-  myjob:
+  vitest:
     runs-on: ubuntu-latest
     steps:
       - run: echo "UNIT TEST ON VITEST STARTED"

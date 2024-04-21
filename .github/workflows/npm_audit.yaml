@@ -1,7 +1,7 @@
-name: unit_test
-on: [workflow_call]
+name: npm_audit
+on: workflow_call
 jobs:
-  myjob:
+  npm_audit:
     runs-on: ubuntu-latest
     steps:
       - run: echo "PACKAGE INSTALLATION STARTED"
