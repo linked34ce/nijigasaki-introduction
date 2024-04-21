@@ -5,14 +5,12 @@ jobs:
   unit_test:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "UNIT TEST ON VITEST STARTED"
       - uses: actions/checkout@v4.1.1
       - run: npm ci --no-audit
       - run: npm run test:unit
   e2e_test:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "E2E TEST ON PLAYWRIGHT STARTED"
       - uses: actions/checkout@v4.1.1
       - run: npm ci --no-audit
       - run: npx playwright install
