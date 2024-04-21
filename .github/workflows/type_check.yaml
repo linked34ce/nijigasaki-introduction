@@ -1,11 +1,10 @@
 name: type-check
 on: workflow_call
 jobs:
-  type-check:
+  type_check:
     runs-on: ubuntu-latest
     steps:
       - run: echo "TYPE CHECK STARTED"
-      - run: echo "PACKAGE INSTALLATION STARTED"
       - uses: actions/checkout@v4.1.1
       - run: |
           ls -al

@@ -4,7 +4,7 @@ jobs:
   npm_audit:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "PACKAGE INSTALLATION STARTED"
+      - run: echo "PACKAGE VULNERABLITY CHECK STARTED"
       - uses: actions/checkout@v4.1.1
       - run: |
           ls -al
