@@ -1,0 +1,16 @@
+name: scan
+on:
+  workflow_call:
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.1.1
+      - run: npm ci --no-audit
+      - run: npm audit
+  type_check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.1.1
+      - run: npm ci --no-audit
+      - run: npm run type-check
