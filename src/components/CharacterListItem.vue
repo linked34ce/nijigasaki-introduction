@@ -13,7 +13,7 @@ const handleClickListItem = () => {
     <div
       class="w-24 cursor-pointer rounded-full bg-blue-500 ring ring-[#e7d600] ring-offset-2 ring-offset-slate-600 duration-150 ease-in-out hover:scale-110"
     >
-      <img class="bg-[#e7d600]/[.3]" src="/public/characters/face/kasumi.png" />
+      <img class="bg-[#e7d600]/[.3]" src="/characters/face/kasumi.png" />
     </div>
   </div>
 </template>
