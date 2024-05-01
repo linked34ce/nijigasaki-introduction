@@ -1,12 +1,21 @@
 <script setup lang="ts">
+import { computed } from 'vue';
 import { shuffle } from 'lodash';
+import { useCharacterStore } from '@/stores/character';
 
 const xCoords = [5, 15, 20, 35, 40, 50, 65, 70, 85, 90] as const;
 const circleClassNames = shuffle(xCoords).map((x) => `x-coord-${x}`);
+
+const { getCharacter } = useCharacterStore();
+
+const backGroundClassName = computed(() => {
+  const character = getCharacter();
+  return !character ? 'from-sky-500 to-indigo-500' : character;
+});
 </script>
 
 <template>
-  <div class="area">
+  <div class="area bg-gradient-to-b blur-sm" :class="backGroundClassName">
     <ul class="circles">
       <li v-for="(item, index) in circleClassNames" :key="index" class="circle" :class="item"></li>
     </ul>
@@ -14,9 +23,15 @@ const circleClassNames = shuffle(xCoords).map((x) => `x-coord-${x}`);
 </template>
 
 <style scoped lang="scss">
+.kasumi {
+  --tw-gradient-from: var(--kasumi-bg-from) var(--tw-gradient-from-position);
+  --tw-gradient-to: var(--kasumi-bg-to) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
 .area {
-  background: #4e54c8;
-  background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);
+  // background: #4e54c8;
+  // background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);
   width: 100%;
   height: 100vh;
   position: absolute;
