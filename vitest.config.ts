@@ -8,16 +8,16 @@ export default defineConfig((env) =>
     defineConfig({
       test: {
         environment: 'jsdom',
-        exclude: [
-          ...configDefaults.exclude,
-          'e2e/**',
-          '**/*/*.config.*',
-          'src/App.vue',
-          'src/main.ts',
-          'src/router/**'
-        ],
+        exclude: [...configDefaults.exclude, 'e2e/**'],
         coverage: {
-          exclude: ['*.config.ts', '*.cjs', 'src/App.vue', 'src/main.ts', 'src/router/**'],
+          exclude: [
+            '*.config.ts',
+            '*.cjs',
+            'src/App.vue',
+            'src/main.ts',
+            'src/router/**',
+            'src/vitest/**'
+          ],
           thresholds: {
             lines: 100,
             branches: 100,
@@ -25,7 +25,8 @@ export default defineConfig((env) =>
             statements: 100
           }
         }
-      }
+      },
+      root: fileURLToPath(new URL('./', import.meta.url))
     })
   )
 );
