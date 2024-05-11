@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import CharacterSelectionIcon from './CharacterListItem.vue';
+import CharacterListItem from './CharacterListItem.vue';
 </script>
 
 <template>
   <div class="character-selection">
-    <CharacterSelectionIcon />
+    <template v-for="i in 1" :key="i">
+      <CharacterListItem name="kasumi" />
+    </template>
   </div>
 </template>
 

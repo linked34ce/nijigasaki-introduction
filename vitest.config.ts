@@ -9,8 +9,24 @@ export default defineConfig((env) =>
       test: {
         environment: 'jsdom',
         exclude: [...configDefaults.exclude, 'e2e/**'],
-        root: fileURLToPath(new URL('./', import.meta.url))
-      }
+        coverage: {
+          exclude: [
+            '*.config.ts',
+            '*.cjs',
+            'src/App.vue',
+            'src/main.ts',
+            'src/router/**',
+            'src/vitest/**'
+          ]
+          // thresholds: {
+          //   lines: 100,
+          //   branches: 100,
+          //   functions: 100,
+          //   statements: 100
+          // }
+        }
+      },
+      root: fileURLToPath(new URL('./', import.meta.url))
     })
   )
 );
