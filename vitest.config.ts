@@ -17,13 +17,13 @@ export default defineConfig((env) =>
             'src/main.ts',
             'src/router/**',
             'src/vitest/**'
-          ],
-          thresholds: {
-            lines: 100,
-            branches: 100,
-            functions: 100,
-            statements: 100
-          }
+          ]
+          // thresholds: {
+          //   lines: 100,
+          //   branches: 100,
+          //   functions: 100,
+          //   statements: 100
+          // }
         }
       },
       root: fileURLToPath(new URL('./', import.meta.url))

@@ -4,9 +4,10 @@ import { userEvent } from '@testing-library/user-event';
 import { renderComponent } from '@/vitest/helper';
 import CharacterListItem from '@/components/CharacterListItem.vue';
 
-const { setCharacterMock } = vi.hoisted(() => {
+const { setCharacterMock, incrementMock } = vi.hoisted(() => {
   return {
-    setCharacterMock: vi.fn()
+    setCharacterMock: vi.fn(),
+    incrementMock: vi.fn()
   };
 });
 
@@ -22,9 +23,23 @@ vi.mock('@/stores/character', () => {
   };
 });
 
+vi.mock('@/stores/clickCounter', () => {
+  const originalModule =
+    vi.importActual<typeof import('@/stores/clickCounter')>('@/stores/clickCounter');
+  return {
+    ...originalModule,
+    useClickCounterStore: () => {
+      return {
+        increment: incrementMock
+      };
+    }
+  };
+});
+
 describe('CharacterListItem', () => {
   afterEach(() => {
     cleanup();
+    vi.clearAllMocks();
   });
 
   it('renders properly', () => {
@@ -44,13 +59,11 @@ describe('CharacterListItem', () => {
     const iconWrapper = getByTestId('icon-wrapper');
 
     await fireEvent.animationEnd(icon);
-
-    expect(iconWrapper.className).toBe('');
-
     await userEvent.click(icon);
 
     await waitFor(() => expect(iconWrapper.className).toBe('dissappear'));
-    await waitFor(() => expect(setCharacterMock).toBeCalledWith('kasumi'));
+    await waitFor(() => expect(setCharacterMock).toHaveBeenCalledWith('kasumi'));
+    await waitFor(() => expect(incrementMock).toHaveBeenCalledTimes(1));
   });
 
   it('does not dissappear until the popping animation is over', async () => {
@@ -64,5 +77,7 @@ describe('CharacterListItem', () => {
     await userEvent.click(icon);
 
     await waitFor(() => expect(iconWrapper.className).toBe(''));
+    await waitFor(() => expect(setCharacterMock).not.toHaveBeenCalled());
+    await waitFor(() => expect(incrementMock).not.toHaveBeenCalled());
   });
 });

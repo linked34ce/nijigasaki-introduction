@@ -8,5 +8,9 @@ export const useCharacterStore = defineStore('character', () => {
     character.value = newCharacter;
   };
 
-  return { character, setCharacter };
+  const reset = () => {
+    character.value = undefined;
+  };
+
+  return { character, setCharacter, reset };
 });

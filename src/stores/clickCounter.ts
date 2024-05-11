@@ -6,5 +6,9 @@ export const useClickCounterStore = defineStore('clickCounter', () => {
 
   const increment = () => clickCount.value++;
 
-  return { clickCount, increment };
+  const reset = () => {
+    clickCount.value = 0;
+  };
+
+  return { clickCount, increment, reset };
 });
