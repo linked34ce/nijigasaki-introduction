@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import BackGround from '@/components/BackGround.vue';
-import CharacterList from '@/components/CharacterList.vue';
+import CharactersIntroduction from '@/views/CharactersIntroduction.vue';
 </script>
 
 <template>
-  <BackGround />
-  <CharacterList />
+  <CharactersIntroduction />
 </template>
 
 <style scoped></style>

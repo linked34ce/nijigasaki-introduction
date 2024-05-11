@@ -1,21 +1,12 @@
 <script setup lang="ts">
-import { computed } from 'vue';
 import { shuffle } from 'lodash';
-import { useCharacterStore } from '@/stores/character';
 
 const xCoords = [5, 15, 20, 35, 40, 50, 65, 70, 85, 90] as const;
 const circleClassNames = shuffle(xCoords).map((x) => `x-coord-${x}`);
-
-const { getCharacter } = useCharacterStore();
-
-const backGroundClassName = computed(() => {
-  const character = getCharacter();
-  return !character ? 'from-sky-500 to-indigo-500' : character;
-});
 </script>
 
 <template>
-  <div class="area bg-gradient-to-b blur-sm" :class="backGroundClassName">
+  <div class="area blur-[2px]">
     <ul class="circles">
       <li v-for="(item, index) in circleClassNames" :key="index" class="circle" :class="item"></li>
     </ul>
@@ -23,15 +14,9 @@ const backGroundClassName = computed(() => {
 </template>
 
 <style scoped lang="scss">
-.kasumi {
-  --tw-gradient-from: var(--kasumi-bg-from) var(--tw-gradient-from-position);
-  --tw-gradient-to: var(--kasumi-bg-to) var(--tw-gradient-to-position);
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-}
-
 .area {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   position: absolute;
   z-index: -1;
 }
@@ -52,7 +37,7 @@ const backGroundClassName = computed(() => {
     height: 20px;
     bottom: -150px;
     border-radius: 50%;
-    animation: animate 25s linear infinite;
+    animation: bubble 25s linear infinite;
 
     &:nth-child(1) {
       width: 80px;
@@ -169,7 +154,7 @@ const backGroundClassName = computed(() => {
   }
 }
 
-@keyframes animate {
+@keyframes bubble {
   0% {
     transform: translateY(-30px);
     opacity: 1;
