@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import CharacterListItem from './CharacterListItem.vue';
+import { characters } from '@/constants/characters';
 </script>
 
 <template>
   <div class="character-selection">
-    <template v-for="i in 1" :key="i">
-      <CharacterListItem name="kasumi" />
+    <template v-for="(character, index) in characters" :key="index">
+      <CharacterListItem :name="character.name" />
     </template>
   </div>
 </template>
