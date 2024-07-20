@@ -1,83 +1,84 @@
-import { vi, describe, it, expect, afterEach } from 'vitest';
+import { describe, it, expect, afterEach } from 'vitest';
 import { cleanup, waitFor, fireEvent } from '@testing-library/vue';
 import { userEvent } from '@testing-library/user-event';
 import { renderComponent } from '@/vitest/helper';
 import CharacterListItem from '@/components/CharacterListItem.vue';
-
-const { setCharacterMock, incrementMock } = vi.hoisted(() => {
-  return {
-    setCharacterMock: vi.fn(),
-    incrementMock: vi.fn()
-  };
-});
-
-vi.mock('@/stores/character', () => {
-  const originalModule = vi.importActual<typeof import('@/stores/character')>('@/stores/character');
-  return {
-    ...originalModule,
-    useCharacterStore: () => {
-      return {
-        setCharacter: setCharacterMock
-      };
-    }
-  };
-});
-
-vi.mock('@/stores/clickCounter', () => {
-  const originalModule =
-    vi.importActual<typeof import('@/stores/clickCounter')>('@/stores/clickCounter');
-  return {
-    ...originalModule,
-    useClickCounterStore: () => {
-      return {
-        increment: incrementMock
-      };
-    }
-  };
-});
+import { useCharacterStore } from '@/stores/character';
+import { useClickCounterStore } from '@/stores/clickCounter';
 
 describe('CharacterListItem', () => {
   afterEach(() => {
     cleanup();
-    vi.clearAllMocks();
   });
 
   it('renders properly', () => {
-    const { getByRole } = renderComponent(CharacterListItem, { props: { name: 'kasumi' } });
+    const { getByRole } = renderComponent(CharacterListItem, { name: 'kasumi' });
 
     const icon = getByRole('img');
 
     expect(icon).toHaveProperty('alt', 'icon-kasumi');
   });
 
-  it('gets invisible and stores the name when clicked', async () => {
-    const { getByRole, getByTestId } = renderComponent(CharacterListItem, {
-      props: { name: 'kasumi' }
-    });
+  it('does not dissappear until the popping animation is over', async () => {
+    const {
+      getByRole,
+      store1: characterStore,
+      store2: clickCounterStore,
+    } = renderComponent<ReturnType<typeof useCharacterStore>, ReturnType<typeof useClickCounterStore>>(
+      CharacterListItem,
+      { name: 'kasumi' },
+      undefined,
+      undefined,
+      [useCharacterStore, useClickCounterStore]
+    );
 
     const icon = getByRole('img');
-    const iconWrapper = getByTestId('icon-wrapper');
 
-    await fireEvent.animationEnd(icon);
     await userEvent.click(icon);
 
-    await waitFor(() => expect(iconWrapper.className).toBe('dissappear'));
-    await waitFor(() => expect(setCharacterMock).toHaveBeenCalledWith('kasumi'));
-    await waitFor(() => expect(incrementMock).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(icon.parentElement?.parentElement?.classList).toContain('pop-up'));
+    await waitFor(() => expect(characterStore?.character).toBeUndefined());
+    await waitFor(() => expect(clickCounterStore?.clickCount).toBe(0));
   });
 
-  it('does not dissappear until the popping animation is over', async () => {
-    const { getByRole, getByTestId } = renderComponent(CharacterListItem, {
-      props: { name: 'kasumi' }
-    });
+  it('gets invisible and stores the name when clicked', async () => {
+    const {
+      getByRole,
+      store1: characterStore,
+      store2: clickCounterStore,
+    } = renderComponent<ReturnType<typeof useCharacterStore>, ReturnType<typeof useClickCounterStore>>(
+      CharacterListItem,
+      { name: 'kasumi' },
+      undefined,
+      undefined,
+      [useCharacterStore, useClickCounterStore]
+    );
 
     const icon = getByRole('img');
-    const iconWrapper = getByTestId('icon-wrapper');
 
-    await userEvent.click(icon);
+    await fireEvent.animationEnd(icon.parentElement?.parentElement as HTMLDivElement);
+    await waitFor(() => userEvent.click(icon));
 
-    await waitFor(() => expect(iconWrapper.className).toBe(''));
-    await waitFor(() => expect(setCharacterMock).not.toHaveBeenCalled());
-    await waitFor(() => expect(incrementMock).not.toHaveBeenCalled());
+    await waitFor(() => expect(icon.parentElement?.parentElement?.classList).toContain('roll-out'));
+    await waitFor(() => expect(characterStore?.character).toBe('kasumi'));
+    await waitFor(() => expect(clickCounterStore?.clickCount).toBe(1));
+  });
+
+  it('gets invisible but does not roll out if the name differs from one in the store', async () => {
+    const { getByRole, store1: characterStore } = renderComponent<ReturnType<typeof useCharacterStore>>(
+      CharacterListItem,
+      { name: 'kasumi' },
+      undefined,
+      undefined,
+      [useCharacterStore]
+    );
+
+    const icon = getByRole('img');
+
+    await fireEvent.animationEnd(icon.parentElement?.parentElement as HTMLDivElement);
+    await waitFor(() => userEvent.click(icon));
+    characterStore?.setCharacter('ayumu');
+
+    await waitFor(() => expect(icon.parentElement?.parentElement?.classList).toContain('fade-out'));
   });
 });
