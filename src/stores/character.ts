@@ -12,5 +12,9 @@ export const useCharacterStore = defineStore('character', () => {
     character.value = undefined;
   };
 
-  return { character, setCharacter, reset };
+  return {
+    character,
+    setCharacter,
+    reset,
+  };
 });

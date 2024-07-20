@@ -5,19 +5,19 @@ import { useCharacterStore } from '@/stores/character';
 import { useClickCounterStore } from '@/stores/clickCounter';
 import FloatingBubbles from '@/components/FloatingBubbles.vue';
 
-const { character } = storeToRefs(useCharacterStore());
-const { clickCount } = storeToRefs(useClickCounterStore());
+const characterStore = useCharacterStore();
+const clickCounterStore = useClickCounterStore();
 
 const shallowBackgroundClassName = computed(() => {
-  return !character.value
+  return !characterStore.character
     ? 'from-sky-500 to-indigo-500'
-    : `${character.value} from-deep-to-shallow`;
+    : `bg-${characterStore.character} from-deep-to-shallow`;
 });
 </script>
 
 <template>
-  <div class="bg-deep bg-gradient-to-b from-sky-500 to-indigo-500"></div>
-  <div class="bg-shallow bg-gradient-to-b" :class="shallowBackgroundClassName"></div>
+  <div class="bg-deep bg-gradient-to-b from-sky-500 to-indigo-500" title="deep"></div>
+  <div class="bg-shallow bg-gradient-to-b" :class="shallowBackgroundClassName" title="shallow"></div>
   <FloatingBubbles />
 </template>
 
@@ -37,12 +37,24 @@ const shallowBackgroundClassName = computed(() => {
     opacity: 0;
     z-index: -2;
   }
-}
 
-.kasumi {
-  --tw-gradient-from: var(--kasumi-bg-from) var(--tw-gradient-from-position);
-  --tw-gradient-to: var(--kasumi-bg-to) var(--tw-gradient-to-position);
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  &-yu {
+    --tw-gradient-from: var(--yu-bg-from) var(--tw-gradient-from-position);
+    --tw-gradient-to: var(--yu-bg-to) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  }
+
+  &-ayumu {
+    --tw-gradient-from: var(--ayumu-bg-from) var(--tw-gradient-from-position);
+    --tw-gradient-to: var(--ayumu-bg-to) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  }
+
+  &-kasumi {
+    --tw-gradient-from: var(--kasumi-bg-from) var(--tw-gradient-from-position);
+    --tw-gradient-to: var(--kasumi-bg-to) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  }
 }
 
 .from-deep-to-shallow {

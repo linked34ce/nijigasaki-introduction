@@ -15,18 +15,19 @@ export default defineConfig((env) =>
             '*.cjs',
             'src/App.vue',
             'src/main.ts',
+            'src/constants/**',
             'src/router/**',
-            'src/vitest/**'
-          ]
-          // thresholds: {
-          //   lines: 100,
-          //   branches: 100,
-          //   functions: 100,
-          //   statements: 100
-          // }
-        }
+            'src/vitest/**',
+          ],
+          thresholds: {
+            lines: 100,
+            branches: 100,
+            functions: 100,
+            statements: 100,
+          },
+        },
       },
-      root: fileURLToPath(new URL('./', import.meta.url))
+      root: fileURLToPath(new URL('./', import.meta.url)),
     })
   )
 );
