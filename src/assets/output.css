@@ -774,15 +774,6 @@ html {
   justify-content: center;
 }
 
-.chat {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  -moz-column-gap: 0.75rem;
-       column-gap: 0.75rem;
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
-}
-
 .link {
   cursor: pointer;
   text-decoration-line: underline;
@@ -939,6 +930,10 @@ html {
   right: 7%;
 }
 
+.invisible {
+  visibility: hidden;
+}
+
 .absolute {
   position: absolute;
 }
@@ -951,16 +946,16 @@ html {
   display: block;
 }
 
-.flex {
-  display: flex;
+.grid {
+  display: grid;
 }
 
 .hidden {
   display: none;
 }
 
-.w-24 {
-  width: 6rem;
+.w-20 {
+  width: 5rem;
 }
 
 .transform {
@@ -971,16 +966,16 @@ html {
   cursor: pointer;
 }
 
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.justify-items-center {
+  justify-items: center;
+}
+
 .rounded-full {
   border-radius: 9999px;
-}
-
-.border {
-  border-width: 1px;
-}
-
-.bg-\[\#e7d600\]\/\[\.3\] {
-  background-color: rgb(231 214 0 / .3);
 }
 
 .bg-blue-500 {
@@ -1008,11 +1003,6 @@ html {
   box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
 }
 
-.ring-\[\#e7d600\] {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(231 214 0 / var(--tw-ring-opacity));
-}
-
 .ring-offset-2 {
   --tw-ring-offset-width: 2px;
 }
@@ -1024,14 +1014,6 @@ html {
 .blur-\[2px\] {
   --tw-blur: blur(2px);
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-
-.transition {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
 }
 
 .duration-150 {
@@ -1046,10 +1028,8 @@ html {
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .hover\:scale-110:hover {
-    --tw-scale-x: 1.1;
-    --tw-scale-y: 1.1;
-    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+@media (min-width: 768px) {
+  .md\:w-24 {
+    width: 6rem;
   }
 }

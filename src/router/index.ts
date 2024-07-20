@@ -7,9 +7,9 @@ const router = createRouter({
     {
       path: '/',
       name: 'nijigasaki-introduction',
-      component: CharactersIntroduction
-    }
-  ]
+      component: CharactersIntroduction,
+    },
+  ],
 });
 
 export default router;

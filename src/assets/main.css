@@ -1,6 +1,14 @@
 @import url(output.css);
 
 :root {
+  --yu-primary-color: #1d1d1d;
+  --yu-icon-color: #1d1d1d4d;
+  --yu-bg-from: #333333;
+  --yu-bg-to: #1a1a1a;
+  --ayumu-primary-color: #ed7d95;
+  --ayumu-icon-color: #ed7d954d;
+  --ayumu-bg-from: #ed7ea3;
+  --ayumu-bg-to: #ed7e90;
   --kasumi-primary-color: #e7d600;
   --kasumi-icon-color: #e7d6004d;
   --kasumi-bg-from: #e8e800;

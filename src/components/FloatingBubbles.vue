@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { shuffle } from 'lodash';
+import { BUBBLE_X_COORDS } from '@/constants/bubbleXCoords';
 
-const xCoords = [5, 15, 20, 35, 40, 50, 65, 70, 85, 90] as const;
-const circleClassNames = shuffle(xCoords).map((x) => `x-coord-${x}`);
+const circleClassNames = shuffle(BUBBLE_X_COORDS).map((x) => `x-coord-${x}`);
 </script>
 
 <template>
   <div class="area blur-[2px]">
     <ul class="circles">
-      <li v-for="(item, index) in circleClassNames" :key="index" class="circle" :class="item"></li>
+      <li v-for="(item, index) in circleClassNames" :key="index" class="circle" :class="item" title="bubble"></li>
     </ul>
   </div>
 </template>
