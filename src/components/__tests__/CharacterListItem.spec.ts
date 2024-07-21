@@ -24,13 +24,13 @@ describe('CharacterListItem', () => {
       getByRole,
       store1: characterStore,
       store2: clickCounterStore,
-    } = renderComponent<ReturnType<typeof useCharacterStore>, ReturnType<typeof useClickCounterStore>>(
-      CharacterListItem,
-      { name: 'kasumi' },
-      undefined,
-      undefined,
-      [useCharacterStore, useClickCounterStore]
-    );
+    } = renderComponent<
+      ReturnType<typeof useCharacterStore>,
+      ReturnType<typeof useClickCounterStore>
+    >(CharacterListItem, { name: 'kasumi' }, undefined, undefined, [
+      useCharacterStore,
+      useClickCounterStore,
+    ]);
 
     const icon = getByRole('img');
 
@@ -46,13 +46,13 @@ describe('CharacterListItem', () => {
       getByRole,
       store1: characterStore,
       store2: clickCounterStore,
-    } = renderComponent<ReturnType<typeof useCharacterStore>, ReturnType<typeof useClickCounterStore>>(
-      CharacterListItem,
-      { name: 'kasumi' },
-      undefined,
-      undefined,
-      [useCharacterStore, useClickCounterStore]
-    );
+    } = renderComponent<
+      ReturnType<typeof useCharacterStore>,
+      ReturnType<typeof useClickCounterStore>
+    >(CharacterListItem, { name: 'kasumi' }, undefined, undefined, [
+      useCharacterStore,
+      useClickCounterStore,
+    ]);
 
     const icon = getByRole('img');
 
@@ -65,13 +65,9 @@ describe('CharacterListItem', () => {
   });
 
   it('gets invisible but does not roll out if the name differs from one in the store', async () => {
-    const { getByRole, store1: characterStore } = renderComponent<ReturnType<typeof useCharacterStore>>(
-      CharacterListItem,
-      { name: 'kasumi' },
-      undefined,
-      undefined,
-      [useCharacterStore]
-    );
+    const { getByRole, store1: characterStore } = renderComponent<
+      ReturnType<typeof useCharacterStore>
+    >(CharacterListItem, { name: 'kasumi' }, undefined, undefined, [useCharacterStore]);
 
     const icon = getByRole('img');
 
