@@ -10,9 +10,10 @@ export default defineConfig(({ mode }) => {
     plugins: [vue(), VueDevTools()],
     resolve: {
       alias: {
-        '@': fileURLToPath(new URL('./src', import.meta.url))
-      }
+        '@': fileURLToPath(new URL('./src', import.meta.url)),
+      },
     },
-    base: mode === 'production' ? '/nijigasaki-introduction/' : '/'
+    base: mode === 'production' ? '/nijigasaki-introduction/' : '/',
+    publicDir: mode === 'production' ? 'nijigasaki-introduction/public' : 'public',
   };
 });

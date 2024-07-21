@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import { storeToRefs } from 'pinia';
 import { useCharacterStore } from '@/stores/character';
-import { useClickCounterStore } from '@/stores/clickCounter';
+// import { useClickCounterStore } from '@/stores/clickCounter';
 import FloatingBubbles from '@/components/FloatingBubbles.vue';
 
 const characterStore = useCharacterStore();
-const clickCounterStore = useClickCounterStore();
+// const clickCounterStore = useClickCounterStore();
 
 const shallowBackgroundClassName = computed(() => {
   return !characterStore.character
