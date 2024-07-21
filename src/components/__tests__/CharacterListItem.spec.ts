@@ -1,4 +1,4 @@
-import { describe, it, expect, afterEach } from 'vitest';
+import { vi, describe, it, expect, afterEach } from 'vitest';
 import { cleanup, waitFor, fireEvent } from '@testing-library/vue';
 import { userEvent } from '@testing-library/user-event';
 import { renderComponent } from '@/vitest/helper';
@@ -17,6 +17,19 @@ describe('CharacterListItem', () => {
     const icon = getByRole('img');
 
     expect(icon).toHaveProperty('alt', 'icon-kasumi');
+    expect(icon).toHaveProperty('src', 'http://localhost:3000/characters/face/kasumi.png');
+  });
+
+  it('changes its image path after deployed', () => {
+    vi.stubGlobal('location', { ...location, pathname: '/nijigasaki-introduction' });
+
+    const { getByRole } = renderComponent(CharacterListItem, { name: 'kasumi' });
+
+    const icon = getByRole('img');
+
+    expect(icon).toHaveProperty('src', 'http://localhost:3000/nijigasaki-introduction/characters/face/kasumi.png');
+
+    vi.unstubAllGlobals();
   });
 
   it('does not dissappear until the popping animation is over', async () => {
