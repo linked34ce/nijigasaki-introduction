@@ -12,8 +12,12 @@
     "e2e": "playwright test",
     "build-only": "vite build",
     "type-check": "vue-tsc --build --force",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-    "format": "prettier --write src/"
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore --max-warnings 0",
+    "format": "prettier --write ./"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npm run type-check && npm run lint",
+    "pre-push": "npx prettier ./ --check || (npm run format && git add . && git commit -m 'automatically format by pre-push hook' --no-verify)"
   },
   "dependencies": {
     "lodash": "^4.17.21",
@@ -47,9 +51,10 @@
     "jsdom": "^24.0.0",
     "npm-run-all2": "^6.1.2",
     "postcss": "^8.4.38",
-    "prettier": "^3.2.5",
+    "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.5.14",
     "sass": "^1.75.0",
+    "simple-git-hooks": "^2.11.1",
     "tailwindcss": "^3.4.3",
     "typescript": "~5.4.0",
     "vite": "^5.2.8",
