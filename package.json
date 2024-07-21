@@ -17,7 +17,7 @@
   },
   "simple-git-hooks": {
     "pre-commit": "npm run type-check && npm run lint",
-    "pre-push": "npx prettier ./ --check || (git add . && git commit -m 'automatically format by pre-push hook')"
+    "pre-push": "npx prettier ./ --check || (npm run format && git add . && git commit -m 'automatically format by pre-push hook' --no-verify)"
   },
   "dependencies": {
     "lodash": "^4.17.21",
