@@ -27,9 +27,7 @@ describe('GradientBackground', () => {
   });
 
   it('changes its color when a character name is given', async () => {
-    const { getByTitle, store1: characterStore } = renderComponent<
-      ReturnType<typeof useCharacterStore>
-    >(
+    const { getByTitle, store1: characterStore } = renderComponent<ReturnType<typeof useCharacterStore>>(
       GradientBackground,
       undefined,
       undefined,

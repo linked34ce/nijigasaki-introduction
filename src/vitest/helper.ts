@@ -26,17 +26,11 @@ export const renderComponent = <T = never, U = never, V = never>(
   });
 
   const store1 =
-    storeFunctions && storeFunctions.length > 0
-      ? ((storeFunctions as StoreDefinition[])[0](pinia) as T)
-      : undefined;
+    storeFunctions && storeFunctions.length > 0 ? ((storeFunctions as StoreDefinition[])[0](pinia) as T) : undefined;
   const store2 =
-    storeFunctions && storeFunctions.length > 1
-      ? ((storeFunctions as StoreDefinition[])[1](pinia) as U)
-      : undefined;
+    storeFunctions && storeFunctions.length > 1 ? ((storeFunctions as StoreDefinition[])[1](pinia) as U) : undefined;
   const store3 =
-    storeFunctions && storeFunctions.length > 2
-      ? ((storeFunctions as StoreDefinition[])[2](pinia) as V)
-      : undefined;
+    storeFunctions && storeFunctions.length > 2 ? ((storeFunctions as StoreDefinition[])[2](pinia) as V) : undefined;
 
   return {
     ...render(component, {
