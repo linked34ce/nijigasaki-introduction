@@ -10,15 +10,7 @@ export default defineConfig((env) =>
         environment: 'jsdom',
         exclude: [...configDefaults.exclude, 'e2e/**'],
         coverage: {
-          exclude: [
-            '*.config.ts',
-            '*.cjs',
-            'src/App.vue',
-            'src/main.ts',
-            'src/constants/**',
-            'src/router/**',
-            'src/vitest/**',
-          ],
+          exclude: ['*.config.ts', '*.cjs', 'src/App.vue', 'src/main.ts', 'src/router/**', 'src/vitest/**'],
           thresholds: {
             lines: 100,
             branches: 100,

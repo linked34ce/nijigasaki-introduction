@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue';
 import { useCharacterStore } from '@/stores/character';
 import { useClickCounterStore } from '@/stores/clickCounter';
+import { PREFIX } from '@/constants/prefix';
 
 const props = defineProps<{ name: string }>();
 
@@ -33,7 +34,7 @@ const itemClassName = computed(() => {
 
 const ringClassName = computed(() => `ring-${props.name}`);
 const imgClassName = computed(() => `bg-${props.name}`);
-const imgSrc = computed(() => `/characters/face/${props.name}.png`);
+const imgSrc = computed(() => `${location.pathname.includes(PREFIX) ? PREFIX : ''}/characters/face/${props.name}.png`);
 const imgAlt = computed(() => `icon-${props.name}`);
 </script>
 
