@@ -16,7 +16,11 @@ const shallowBackgroundClassName = computed(() => {
 
 <template>
   <div class="bg-deep bg-gradient-to-b from-sky-500 to-indigo-500" title="deep"></div>
-  <div class="bg-shallow bg-gradient-to-b" :class="shallowBackgroundClassName" title="shallow"></div>
+  <div
+    class="bg-shallow bg-gradient-to-b"
+    :class="shallowBackgroundClassName"
+    title="shallow"
+  ></div>
   <FloatingBubbles />
 </template>
 

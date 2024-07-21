@@ -39,7 +39,12 @@ const imgAlt = computed(() => `icon-${props.name}`);
 
 <template>
   <div @click="handleClickListItem(props.name)">
-    <div class="avatar" @animationend="handleAnimationEnd" :class="itemClassName" data-testid="icon">
+    <div
+      class="avatar"
+      @animationend="handleAnimationEnd"
+      :class="itemClassName"
+      data-testid="icon"
+    >
       <div
         class="w-20 cursor-pointer rounded-full bg-blue-500 ring ring-offset-2 ring-offset-slate-600 duration-150 ease-in-out md:w-24"
         :class="ringClassName"

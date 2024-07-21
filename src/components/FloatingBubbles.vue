@@ -8,7 +8,13 @@ const circleClassNames = shuffle(BUBBLE_X_COORDS).map((x) => `x-coord-${x}`);
 <template>
   <div class="area blur-[2px]">
     <ul class="circles">
-      <li v-for="(item, index) in circleClassNames" :key="index" class="circle" :class="item" title="bubble"></li>
+      <li
+        v-for="(item, index) in circleClassNames"
+        :key="index"
+        class="circle"
+        :class="item"
+        title="bubble"
+      ></li>
     </ul>
   </div>
 </template>
