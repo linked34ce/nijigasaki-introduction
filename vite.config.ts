@@ -14,6 +14,5 @@ export default defineConfig(({ mode }) => {
       },
     },
     base: mode === 'production' ? '/nijigasaki-introduction/' : '/',
-    publicDir: mode === 'production' ? 'nijigasaki-introduction/public' : 'public',
   };
 });
