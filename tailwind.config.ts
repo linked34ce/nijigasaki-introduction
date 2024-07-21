@@ -3,13 +3,13 @@ module.exports = {
   content: ['./index.html', './src/*.{vue,js,ts,jsx,tsx}', './src/**/*.{vue,js,ts,jsx,tsx}'],
   darkMode: 'media',
   theme: {
-    extend: {}
+    extend: {},
   },
   variants: {
-    extend: {}
+    extend: {},
   },
   future: {
-    hoverOnlyWhenSupported: true
+    hoverOnlyWhenSupported: true,
   },
-  plugins: [require('daisyui')]
+  plugins: [require('daisyui')],
 };
