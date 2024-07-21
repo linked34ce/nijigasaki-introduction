@@ -3,7 +3,7 @@ import { h } from 'vue';
 import { cleanup } from '@testing-library/vue';
 import { renderComponent } from '@/vitest/helper';
 import CharacterList from '@/components/CharacterList.vue';
-import type { Character } from '@/constants/characters';
+import { type Character } from '@/constants/characters';
 
 vi.mock('@/constants/characters', () => {
   return {
